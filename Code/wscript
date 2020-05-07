@@ -1,41 +1,20 @@
 
 def build(bld):
     bld.DefineGem(
-        # General
+        pch                     = "",
         disable_pch             = True,
         file_list               = ['tracyprofiler.waf_files'],
-        
-        # Testing
-        test_all_file_list      = ['tracyprofiler_tests.waf_files'],
-        
-        # Add custom build options here
-        
-        # To add an editor module to your gem:
-        #
-        #   1. declare editor module settings here in a field called 'editor'.
-        #
-        # Editor = dict(
-        #    file_list           = ['tracyprofiler_editor.waf_files'],
-        #    test_all_file_list  = ['tracyprofiler_editor_tests.waf_files'],
-        #
-        #    and any additional options to override for the editor module, for example, 
-        #    defines             = ["EDITOR_MODULE"],
-        #    
-        # )
-        #
-        #   2. Add the Editor Module to the gem's gem.json modules list in the gem.json file for this gem.
-        #
-        # "Modules": [
-        #        {
-        #            "Type": "GameModule"
-        #        },
-        #        {
-        #            "Name": "Editor",
-        #            "Type": "EditorModule",
-        #            "Extends": "GameModule"
-        #        }
-        #    ]
-        #
-        #   3. Create the corresponding Editor waf_files file lists for the Editor Module in TracyProfiler/Code folder
-        #      To match the example from step 1, create tracyprofiler_editor.waf_files and tracyprofiler_editor_tests.waf_files
+
+        includes        = [bld.Path('Code/CryEngine/CryCommon')],
+        export_includes = [bld.Path('Gems/TraceyProfiler/External/Include')],
+
+        # TRACY_ENABLED turns the tracy profiler on
+        debug_defines = ['TRACY_ENABLED'],
+        profile_defines = ['TRACY_ENABLED'],
+        performance_defines = ['TRACY_ENABLED'],
+
+        # AZ_PROFILE_TELEMETRY turns on profiling telemetry in the engine
+        debug_export_defines = ['AZ_PROFILE_TELEMETRY'],
+        profile_export_defines =['AZ_PROFILE_TELEMETRY'],
+        performance_export_defines =['AZ_PROFILE_TELEMETRY']
     )
