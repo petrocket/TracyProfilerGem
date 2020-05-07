@@ -1,0 +1,15 @@
+{
+    "GemFormatVersion": 4,
+    "Uuid": "7735098263844089a66b8c07ea21d95c",
+    "Name": "TracyProfiler",
+    "DisplayName": "TracyProfiler",
+    "Version": "0.1.0",
+    "Summary": "https:\/\/bitbucket.org\/wolfpld\/tracy",
+    "Tags": ["Untagged"],
+    "IconPath": "preview.png",
+    "Modules": [
+        {
+            "Type": "GameModule"
+        }
+    ]
+}
