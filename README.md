@@ -1,6 +1,9 @@
 # TracyProfilerGem
 A Lumberyard Gem providing integration with Tracy Profiler https://github.com/wolfpld/tracy
 
+![](https://github.com/wolfpld/tracy/doc/profiler.png)
+
+Refer to the latest Tracy manual.pdf [on the Tracy releases page](https://github.com/wolfpld/tracy/releases) for details about how Tracy works.
 
 ## Installation
 1. Clone this repo to your Gems folder using git clone --recurse-submodules <repository url>
@@ -18,7 +21,7 @@ A Lumberyard Gem providing integration with Tracy Profiler https://github.com/wo
             #include <TracyProfiler/TracyProfiler.h>
         #endif 
 
-5. Modify dev/Code/Frameworks/AzCore/AzCore/wscript.h and add a use for TRACY_PROFILER like there is for RAD_TELEMETRY similar to
+5. Modify **dev/Code/Frameworks/AzCore/AzCore/wscript** and add a use for TRACY_PROFILER like there is for RAD_TELEMETRY similar to
 
         use = [
            ...
