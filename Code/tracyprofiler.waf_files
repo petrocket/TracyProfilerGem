@@ -1,8 +1,7 @@
 {
     "auto": {
         "Include": [
-            "Include/TracyProfiler/TracyProfiler.h",
-            "Include/TracyProfiler/TracyProfilerBus.h"
+            "Include/TracyProfiler/TracyProfiler.h"
         ],
         "Source": [
             "Source/TracyProfilerModule.cpp",

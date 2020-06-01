@@ -5,17 +5,13 @@
 #include <AzCore/Component/TickBus.h>
 #include <AzCore/std/string/string.h>
 
-//#include <TracyProfiler/TracyProfilerBus.h>
-
 namespace TracyProfiler
 {
     class TracyProfilerSystemComponent
         : public AZ::Component
-        //, protected TracyProfilerRequestBus::Handler
         , private AZStd::ThreadEventBus::Handler
         , private AZ::SystemTickBus::Handler
         , private AZ::Debug::ProfilerRequestBus::Handler
-//        , private ProfileTelemetryRequestBus::Handler
     {
     public:
         AZ_COMPONENT(TracyProfilerSystemComponent, "{C1B37CCE-EB09-488F-8390-99BCF0053134}");
@@ -67,11 +63,5 @@ namespace TracyProfiler
 
         AZ::Debug::ProfileFrameAdvanceType m_frameAdvanceType = AZ::Debug::ProfileFrameAdvanceType::Game;
         bool m_running = true; // currently not using on-demand mode 
-
-        //const char* m_address = "127.0.0.1";
-        //AZ::u16 m_port = 4719;
-        //char* m_buffer = nullptr;
-        //AZ::Debug::ProfileCategoryPrimitiveType m_captureMask = GetDefaultCaptureMaskInternal();
-        //bool m_initialized = false;
     };
 }

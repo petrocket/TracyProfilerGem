@@ -14,20 +14,6 @@ namespace TracyProfiler
     static const char * ProfileChannel = "TracyProfiler";
     static const AZ::u32 MaxProfileThreadCount = 128;
 
-    //static void MessageFrameTickType(AZ::Debug::ProfileFrameAdvanceType type)
-    //{
-    //    if (type == AZ::Debug::ProfileFrameAdvanceType::Game)
-    //    {
-    //        AZ_Printf(ProfileChannel, "Profile tick set to Game");
-    //        TracyMessageL("Profile tick set to Game");
-    //    }
-    //    else
-    //    {
-    //        AZ_Printf(ProfileChannel, "Profile tick set to Render Frame");
-    //        TracyMessageL("Profile tick set to Render Frame");
-    //    }
-    //}
-
     TracyProfilerSystemComponent::TracyProfilerSystemComponent()
     {
         AZStd::ThreadEventBus::Handler::BusConnect();
@@ -103,9 +89,7 @@ namespace TracyProfiler
             return;
         }
 
-        //if (IsInitialized())
         {
-            // We can send the thread name to Telemetry now
             const AZ::u32 newProfiledThreadCount = ++m_profiledThreadCount;
             AZ_Assert(newProfiledThreadCount <= MaxProfileThreadCount, "Tracy Profiled threadcount exceeded MaxProfileThreadCount!");
             tracy::SetThreadName(desc->m_name);
