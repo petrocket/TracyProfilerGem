@@ -31,8 +31,9 @@ A Lumberyard Gem providing integration with Tracy Profiler https://github.com/wo
 8. run the editor or game launcher and connect via the Tracy Profiler app (Tracy.exe) and profiling data should appear.  Congrats! 
 
 ## Implementation
-The bulk #defines that Lumberyard calls can be found in TracyProfilerGem/Code/Include/TracyProfiler.h
-The TracySystemComponent is used for naming threads and calling MarkFrame.  In the future, it should provide the functionality to connect/disconnect and enable/disable profiling
+The #defines that map Lumberyard profiling calls to Tracy calls are in TracyProfilerGem/Code/Include/TracyProfiler.h - not all are implemented.
+
+TracySystemComponent is used for naming threads and calling MarkFrame.  In the future, it should provide the functionality to connect/disconnect and enable/disable profiling
 
 ## Known issues
 
