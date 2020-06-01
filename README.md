@@ -1,9 +1,10 @@
-# TracyProfilerGem
+# TracyProfiler Gem
 A Lumberyard Gem providing integration with Tracy Profiler https://github.com/wolfpld/tracy
 
-![](https://github.com/wolfpld/tracy/doc/profiler.png)
-
 Refer to the latest Tracy manual.pdf [on the Tracy releases page](https://github.com/wolfpld/tracy/releases) for details about how Tracy works.
+
+![](https://github.com/wolfpld/tracy/blob/master/doc/profiler.png)
+
 
 ## Installation
 1. Clone this repo to your Gems folder using git clone --recurse-submodules <repository url>
