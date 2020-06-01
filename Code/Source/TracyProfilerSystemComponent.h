@@ -1,17 +1,27 @@
 #pragma once
 
+#include <AzCore/std/parallel/threadbus.h>
 #include <AzCore/Component/Component.h>
+#include <AzCore/Component/TickBus.h>
+#include <AzCore/std/string/string.h>
 
-#include <TracyProfiler/TracyProfilerBus.h>
+//#include <TracyProfiler/TracyProfilerBus.h>
 
 namespace TracyProfiler
 {
     class TracyProfilerSystemComponent
         : public AZ::Component
-        , protected TracyProfilerRequestBus::Handler
+        //, protected TracyProfilerRequestBus::Handler
+        , private AZStd::ThreadEventBus::Handler
+        , private AZ::SystemTickBus::Handler
+        , private AZ::Debug::ProfilerRequestBus::Handler
+//        , private ProfileTelemetryRequestBus::Handler
     {
     public:
         AZ_COMPONENT(TracyProfilerSystemComponent, "{C1B37CCE-EB09-488F-8390-99BCF0053134}");
+
+        TracyProfilerSystemComponent();
+        ~TracyProfilerSystemComponent() override;
 
         static void Reflect(AZ::ReflectContext* context);
 
@@ -22,15 +32,46 @@ namespace TracyProfiler
 
     protected:
         ////////////////////////////////////////////////////////////////////////
-        // TracyProfilerRequestBus interface implementation
-
-        ////////////////////////////////////////////////////////////////////////
-
-        ////////////////////////////////////////////////////////////////////////
         // AZ::Component interface implementation
         void Init() override;
         void Activate() override;
         void Deactivate() override;
-        ////////////////////////////////////////////////////////////////////////
+
+    private:
+        //////////////////////////////////////////////////////////////////////////
+        // Thread event bus
+        void OnThreadEnter(const AZStd::thread_id& id, const AZStd::thread_desc* desc) override;
+        void OnThreadExit(const AZStd::thread_id& id) override;
+
+        //////////////////////////////////////////////////////////////////////////
+        // SystemTickBus
+        void OnSystemTick() override;
+
+        //////////////////////////////////////////////////////////////////////////
+        // ProfilerRequstBus
+        bool IsActive() override;
+        void FrameAdvance(AZ::Debug::ProfileFrameAdvanceType type) override;
+
+        //////////////////////////////////////////////////////////////////////////
+        // Data members
+        struct ThreadNameEntry
+        {
+            AZStd::thread_id id;
+            AZStd::string name;
+        };
+        AZStd::vector<ThreadNameEntry> m_threadNames;
+        using LockType = AZStd::mutex;
+        using ScopedLock = AZStd::lock_guard<LockType>;
+        LockType m_threadNameLock;
+        AZStd::atomic_uint m_profiledThreadCount = { 0 };
+
+        AZ::Debug::ProfileFrameAdvanceType m_frameAdvanceType = AZ::Debug::ProfileFrameAdvanceType::Game;
+        bool m_running = true; // currently not using on-demand mode 
+
+        //const char* m_address = "127.0.0.1";
+        //AZ::u16 m_port = 4719;
+        //char* m_buffer = nullptr;
+        //AZ::Debug::ProfileCategoryPrimitiveType m_captureMask = GetDefaultCaptureMaskInternal();
+        //bool m_initialized = false;
     };
 }

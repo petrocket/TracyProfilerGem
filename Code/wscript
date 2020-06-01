@@ -4,17 +4,21 @@ def build(bld):
         pch                     = "",
         disable_pch             = True,
         file_list               = ['tracyprofiler.waf_files'],
+        use_lib                 = ['TRACY_PROFILER'],
+        includes                = [bld.Path('Code/CryEngine/CryCommon')],
+        export_internal_3rd_party_libs = True,
+        export_includes         = [ bld.Path('Gems/TracyProfiler/External') ],
+        #export_system_includes = [],
 
-        includes        = [bld.Path('Code/CryEngine/CryCommon')],
-        export_includes = [bld.Path('Gems/TraceyProfiler/External/Include')],
+        # TRACY_ENABLE turns the tracy profiler on in Tracy.cpp
+        debug_defines = ['TRACY_ENABLE'],
+        profile_defines = ['TRACY_ENABLE'],
+        performance_defines = ['TRACY_ENABLE'],
 
-        # TRACY_ENABLED turns the tracy profiler on
-        debug_defines = ['TRACY_ENABLED'],
-        profile_defines = ['TRACY_ENABLED'],
-        performance_defines = ['TRACY_ENABLED'],
+        # TRACY_ENABLE turns the tracy profiler on in AzCore
+        debug_export_defines = ['TRACY_ENABLE'],
+        profile_export_defines =['TRACY_ENABLE'],
+        performance_export_defines =['TRACY_ENABLE']
 
-        # AZ_PROFILE_TELEMETRY turns on profiling telemetry in the engine
-        debug_export_defines = ['AZ_PROFILE_TELEMETRY'],
-        profile_export_defines =['AZ_PROFILE_TELEMETRY'],
-        performance_export_defines =['AZ_PROFILE_TELEMETRY']
+        #platform_roots = [bld.PlatformRoot('Source/Platform', export_includes=False)]
     )

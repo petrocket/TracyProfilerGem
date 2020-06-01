@@ -5,6 +5,7 @@
             "Include/TracyProfiler/TracyProfilerBus.h"
         ],
         "Source": [
+            "../External/tracy/TracyClient.cpp",
             "Source/TracyProfilerModule.cpp",
             "Source/TracyProfilerSystemComponent.cpp",
             "Source/TracyProfilerSystemComponent.h"

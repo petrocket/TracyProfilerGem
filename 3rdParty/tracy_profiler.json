@@ -1,0 +1,17 @@
+{
+    "name":"TRACY_PROFILER",
+    "source":"@GEM@",
+    "description":"Tracy profiler library",
+    "lib_required":"True",
+    "system_includes":["Code/Include","External"],
+    "includes":["Code/Include","External"],
+    "platform": {
+        "win_x64_vs2017": {
+            "sharedlibpath_release": [ "External/tracy/library/win32/x64/Release/" ],
+            "importlibpath_release": [ "External/tracy/library/win32/x64/Release/" ],
+            "import": [ "tracyprofiler.lib" ],
+            "shared": [ "tracyprofiler.dll" ]
+        }
+    }
+
+}
