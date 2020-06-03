@@ -32,6 +32,7 @@ Refer to the latest Tracy manual.pdf [on the Tracy releases page](https://github
            ...
            ]
 
+6. Modify **dev/Code/CryEngine/CrySystem/CryPak.cpp** and comment out line 1531 which has a duplicate AZ_PROFILE_SCOPE_DYNAMIC for PAK files in the same function and causes a compile error.
 7. configure and compile your project
 8. run the editor or game launcher and connect via the Tracy Profiler app (Tracy.exe) and profiling data should appear.  Congrats! 
 
