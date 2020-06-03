@@ -12,8 +12,9 @@ Refer to the latest Tracy manual.pdf [on the Tracy releases page](https://github
    
    - run **Gems/TracyProfiler/External/tracy/vcpkg/install_vcpkg_dependencies.bat**
    - Open **Gems/TracyProfiler/External/tracy/profiler/build/win32/Tracy.sln** in Visual Studio 2019 and build release mode
+       (you can use Visual Studio 2017 but will need to right click on the solution and select retarget, then edit the Tracy project properties toolchain setting to use the 2017)
    -  Tracy.exe should now be in the Gems/TracyProfiler/External/tracy/profiler/build/win32/x64/Release folder - run Tracy.exe, this will capture and display profiling data from Lumberyard
-   - Open **Gems/TracyProfiler/External/tracy/library/win32/Tracy.sln** in Visual Studio 2019 and build release mode
+   - Open **Gems/TracyProfiler/External/tracy/library/win32/Tracy.sln** in Visual Studio 2019 and build release mode (or retarget if you want to use Visual Studio 2017)
 3. Add the TracyProfilerGem to your project using ProjectConfigurator.exe
 4. Modify **dev/Code/Frameworks/AzCore/AzCore/Profiler.h** and add an include for the TracyProfiler header like there is for RAD Telemetry near #ifdef AZ_PROFILE_TELEMETRY
 
