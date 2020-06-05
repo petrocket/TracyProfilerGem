@@ -50,7 +50,7 @@
 //    }
 //}
 #define TRACY_PROFILER_VA_ARGS_NAME(buffer, size, name, ...) \
-        char buffer[size]; \
+        static char buffer[size]; \
 AZ_PUSH_DISABLE_WARNING(4477, "-Wunknown-warning-option") \
      	azsnprintf(buffer, size, name, ##__VA_ARGS__); \
 AZ_POP_DISABLE_WARNING
